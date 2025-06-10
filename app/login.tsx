@@ -148,8 +148,10 @@ const LoginScreen = () => {
                     Alert.alert('Access Denied', 'You are not authorized to access this system');
                     return;
                 }
-            } catch (error) {
-                Alert.alert('Registration Error', error instanceof Error ? error.message : 'An unknown error occurred');
+            } catch (error: any) {
+                if (error.code === 409) {
+                    Alert.alert('Error', 'Email already exists. Please use a different email.');
+                }
             }
         }
     };
@@ -222,7 +224,7 @@ const LoginScreen = () => {
             >
                 <View style={styles.brandContainer}>
                     <Image
-                        source={require('../assets/images/logo.png')}
+                        source={require('../assets/images/logo.jpg')}
                         style={styles.logo}
                         resizeMode="contain"
                     />
