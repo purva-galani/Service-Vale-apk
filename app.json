@@ -13,7 +13,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/logo1.png"
+        "foregroundImage": "./assets/images/logo.svg"
       },
       "edgeToEdgeEnabled": true,
       "package": "com.purva_galani.service_vale",
@@ -37,7 +37,7 @@
     "web": {
       "bundler": "metro",
       "output": "static",
-      "favicon": "./assets/images/logo.svg"
+      "favicon": "./assets/images/logo.png"
     },
     "plugins": [
       "expo-router",
