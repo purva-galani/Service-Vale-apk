@@ -731,6 +731,7 @@ const BillPage = () => {
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         style={{ flex: 1 }}
+        keyboardVerticalOffset={ insets.top}
       >
         <ScrollView contentContainerStyle={[styles.scrollContainer, { paddingBottom: 150 }]} keyboardShouldPersistTaps="handled">
           {isFormVisible ? (

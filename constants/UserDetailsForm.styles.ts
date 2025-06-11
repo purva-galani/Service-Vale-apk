@@ -293,7 +293,7 @@ export const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     marginTop: 5,
-    marginBottom: 45,
+    // marginBottom: 45,
     gap: 10,
   },
   editButton: {

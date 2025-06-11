@@ -13,7 +13,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/logo.png"
+        "foregroundImage": "./assets/images/logo1.png"
       },
       "edgeToEdgeEnabled": true,
       "package": "com.purva_galani.service_vale",
