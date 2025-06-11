@@ -202,6 +202,7 @@ const LoginScreen = () => {
                             setResetSecret('');
                             setResetModalVisible(false);
                             setResetSuccess(true);
+                            router.replace('/login');
                         }
                     }
                 ]
@@ -308,6 +309,7 @@ const LoginScreen = () => {
                                     style={[styles.modalButton, styles.secondaryButton]}
                                     onPress={() => {
                                         setResetModalVisible(false);
+                                        router.replace('/login');
                                     }}
                                 >
                                     <Text style={styles.secondaryButtonText}>Cancel</Text>
