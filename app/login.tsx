@@ -266,38 +266,49 @@ const LoginScreen = () => {
                     <View style={styles.modalOverlay}>
                         <View style={styles.modalCard}>
                             <Text style={styles.modalTitle}>Reset Password</Text>
-                            <View style={styles.passwordInputContainer}>
-                                <TextInput
-                                    style={styles.modalInput}
-                                    placeholder="New Password"
-                                    placeholderTextColor="#999"
-                                    value={newPassword}
-                                    onChangeText={setNewPassword}
-                                    secureTextEntry={!showNewPassword}
-                                />
-                                <TouchableOpacity
-                                    style={styles.eyeIcon}
-                                    onPress={() => setShowNewPassword(!showNewPassword)}
-                                >
-                                    <Ionicons
-                                        name={showNewPassword ? 'eye' : 'eye-off'}
-                                        size={20}
-                                        color="#888"
+
+                            <View style={styles.inputContainer}>
+                                <Text style={styles.inputLabel}>New Password</Text>
+                                <View style={styles.passwordInputContainer}>
+                                    <TextInput
+                                        style={styles.passwordInput}
+                                        placeholder="New Password"
+                                        placeholderTextColor="#999"
+                                        value={newPassword}
+                                        onChangeText={setNewPassword}
+                                        secureTextEntry={!showNewPassword}
                                     />
-                                </TouchableOpacity>
+                                    <TouchableOpacity
+                                        style={styles.eyeIcon}
+                                        onPress={() => setShowNewPassword(!showNewPassword)}
+                                    >
+                                        <Ionicons
+                                            name={showNewPassword ? 'eye' : 'eye-off'}
+                                            size={20}
+                                            color="#888"
+                                        />
+                                    </TouchableOpacity>
+                                </View>
                             </View>
-                            <TextInput
-                                style={styles.modalInput}
-                                placeholder="Confirm Password"
-                                placeholderTextColor="#999"
-                                value={resetConfirmPassword}
-                                onChangeText={setResetConfirmPassword}
-                                secureTextEntry={true}
-                            />
+
+                            <View style={styles.inputContainer}>
+                                <Text style={styles.inputLabel}>Confirm Password</Text>
+                                <TextInput
+                                    style={styles.input}
+                                    placeholder="Confirm password"
+                                    placeholderTextColor="#999"
+                                    value={resetConfirmPassword}
+                                    onChangeText={setResetConfirmPassword}
+                                    secureTextEntry={true}
+                                />
+                            </View>
+
                             <View style={styles.modalButtonGroup}>
                                 <TouchableOpacity
                                     style={[styles.modalButton, styles.secondaryButton]}
-                                    onPress={() => setResetModalVisible(false)}
+                                    onPress={() => {
+                                        setResetModalVisible(false);
+                                    }}
                                 >
                                     <Text style={styles.secondaryButtonText}>Cancel</Text>
                                 </TouchableOpacity>
@@ -305,7 +316,7 @@ const LoginScreen = () => {
                                     style={[styles.modalButton, styles.primaryButton]}
                                     onPress={handleResetPassword}
                                 >
-                                    <Text style={styles.primaryButtonText}>Update Password</Text>
+                                    <Text style={styles.primaryButtonText}>Update</Text>
                                 </TouchableOpacity>
                             </View>
                         </View>
