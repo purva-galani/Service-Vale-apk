@@ -61,6 +61,8 @@ const LoginScreen = () => {
             setResetModalVisible(true);
             setResetUserId(params.userId as string);
             setResetSecret(params.secret as string);
+        } else {
+            setResetModalVisible(false);
         }
     }, [params]);
 
@@ -73,9 +75,13 @@ const LoginScreen = () => {
                     const userId = params.get('userId');
                     const secret = params.get('secret');
                     if (userId && secret) {
-                        router.navigate({
-                            pathname: '/reset-password',
-                            params: { userId, secret }
+                        router.replace({
+                            pathname: '/login',
+                            params: {
+                                resetPassword: 'true',
+                                userId,
+                                secret
+                            }
                         });
                     }
                 }
