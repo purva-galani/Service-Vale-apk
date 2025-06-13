@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, Image, TouchableOpacity, ScrollView, Modal, SafeAreaView } from 'react-native';
 import { useRouter } from 'expo-router';
-import { databases } from '../lib/appwrite';
+import { databases, messaging } from '../lib/appwrite';
 import { ID, Query } from 'appwrite';
 import { MaterialIcons, AntDesign, Feather } from '@expo/vector-icons';
 import { styles } from '../constants/ServicePage.styles';
@@ -43,6 +43,34 @@ const ServicePage = () => {
     fetchAllUsers();
   }, []);
 
+  const sendPushNotification = async (userId: string, title: string, body: string) => {
+    try {
+      // 1. Get the user's FCM token from Appwrite
+      const tokens = await databases.listDocuments(
+        DATABASE_ID,
+        'notification_tokens',
+        [Query.equal('device_id', userId)]
+      );
+
+      if (tokens.documents.length > 0) {
+        const token = tokens.documents[0].token;
+
+        // 2. Send via Firebase (using a cloud function)
+        await fetch('YOUR_CLOUD_FUNCTION_URL/send-notification', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            token,
+            title,
+            body
+          }),
+        });
+      }
+    } catch (error) {
+      console.error("Failed to send notification:", error);
+    }
+  };
+
   const createNotification = async (description: string, userEmail: string) => {
     try {
       await databases.createDocument(
@@ -75,19 +103,24 @@ const ServicePage = () => {
   ) => {
     setModalVisible(false);
     setSelectedServiceboyName(applicantName);
+
+    // Create in-app notification
     await createNotification(
-      ` You assigned a new ${selectedServiceType} service.`,
+      `You assigned a new ${selectedServiceType} service.`,
       applicantEmail
     );
+
+    // Send push notification
+    await sendPushNotification(
+      applicantId,
+      "New Service Assignment",
+      `You have a new ${selectedServiceType} service!`
+    );
+
+    // Navigate to order page
     router.push({
       pathname: '/order',
-      params: {
-        applicantId,
-        applicantName,
-        serviceType: selectedServiceType,
-        applicantEmail,
-        applicantPhone
-      },
+      params: { applicantId, applicantName, serviceType: selectedServiceType, applicantEmail, applicantPhone },
     });
   };
 

@@ -13,10 +13,11 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/logo.svg"
+        "foregroundImage": "./assets/images/logo.svg",
+        "googleServicesFile": "./android/app/google-services.json"
       },
       "edgeToEdgeEnabled": true,
-      "package": "com.purva_galani.service_vale",
+      "package": "com.markwatson.service_vale",
       "intentFilters": [
         {
           "action": "VIEW",
@@ -49,6 +50,26 @@
           "resizeMode": "contain",
           "backgroundColor": "#ffffff"
         }
+      ],
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/images/notification-icon.png",
+          "color": "#5E72E4",
+          "sounds": [
+            "./assets/sounds/notification.mp3"
+          ],
+          "mode": "production",
+          "android": {
+            "useNextNotificationsApi": true
+          }
+        }
+      ],
+      [
+        "@react-native-firebase/app",
+        {
+          "googleServicesFile": "./android/app/google-services.json"
+        }
       ]
     ],
     "experiments": {
@@ -57,9 +78,9 @@
     "extra": {
       "router": {},
       "eas": {
-        "projectId": "82646004-be0b-4887-bb51-c40ed7ce8258"
+        "projectId": "ee54449d-0e51-4bae-8856-bb8c5ee0a11c"
       }
     },
-    "owner": "purva_galani"
+    "owner": "markwatson"
   }
 }
